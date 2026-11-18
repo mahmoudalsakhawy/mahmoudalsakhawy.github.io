@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mahmoud Alsakhawy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a ruleset-style page. A narrow mono label rail on the left names each section, the content sits right; it collapses to one column on phones. */
+:root {
+  --bg: #F2F4F7;
+  --surface: #FFFFFF;
+  --fg: #0E1A2B;
+  --muted: #55627A;
+  --line: #D5DBE4;
+  --chip: #E7ECF3;
+  --accent: #C2410C;
+  --accent-ink: #FFFFFF;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A111C;
+    --surface: #111B2B;
+    --fg: #E6ECF5;
+    --muted: #93A1B8;
+    --line: #223048;
+    --chip: #18253A;
+    --accent: #FF8F5A;
+    --accent-ink: #0A111C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A111C;
+  --surface: #111B2B;
+  --fg: #E6ECF5;
+  --muted: #93A1B8;
+  --line: #223048;
+  --chip: #18253A;
+  --accent: #FF8F5A;
+  --accent-ink: #0A111C;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 24px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1000px; margin-inline: auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.12; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.mono { font-family: var(--font-mono); }
+
+/* top bar */
+.bar { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.bar nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.bar a { color: var(--muted); text-decoration: none; }
+.bar a:hover { color: var(--accent); }
+
+/* hero */
+.hero { padding-block: 56px 48px; display: grid; gap: 32px; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+h1 { font-size: clamp(2.6rem, 8vw, 4.8rem); font-weight: 700; letter-spacing: -0.015em; margin-top: 12px; }
+.lead { max-width: 62ch; font-size: 1.125rem; color: var(--fg); margin-top: 20px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 500 14px var(--font-body); padding: 10px 16px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); text-decoration: none; cursor: pointer; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn .mono { font-size: 13px; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.fact { background: var(--surface); padding: 14px 16px; min-width: 0; }
+.fact dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.fact dd { margin: 4px 0 0; font-size: 15px; font-weight: 500; }
+
+/* sections */
+.sec { display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 16px 40px; padding-block: 40px; border-top: 1px solid var(--line); }
+.label { font-family: var(--font-mono); font-size: 13px; color: var(--accent); padding-top: 6px; }
+.label::before { content: "// "; color: var(--muted); }
+.sec h2 { font-size: clamp(1.5rem, 3.6vw, 2rem); font-weight: 600; margin-bottom: 20px; }
+.body { min-width: 0; }
+
+/* skills */
+.rules { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); overflow: hidden; }
+.rule { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 8px 20px; padding: 16px 18px; border-top: 1px solid var(--line); }
+.rule:first-child { border-top: 0; }
+.rule h3 { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li { font-size: 14px; padding: 3px 10px; border-radius: 4px; background: var(--chip); }
+
+/* experience, projects */
+.role { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; margin-bottom: 14px; }
+.role h3 { font-size: 1.35rem; font-weight: 600; }
+.role .meta { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.points { display: grid; gap: 10px; }
+.points li { position: relative; padding-left: 20px; max-width: 68ch; }
+.points li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 10px; height: 2px; background: var(--accent); }
+
+.projects { display: grid; gap: 16px; }
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; }
+.project h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; }
+.project p { color: var(--muted); max-width: 68ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tags li { font-family: var(--font-mono); font-size: 12px; padding: 2px 8px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); }
+
+/* certs */
+.certs { display: grid; gap: 20px; }
+.certgroup h3 { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.certgroup li { padding: 8px 0; border-top: 1px solid var(--line); }
+.certgroup li:last-child { border-bottom: 1px solid var(--line); }
+.certgroup .star { font-weight: 600; }
+
+.edu { display: grid; gap: 14px; }
+.edu li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; }
+.edu strong { font-weight: 600; }
+.edu .meta { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+.contact p { max-width: 58ch; color: var(--muted); margin-bottom: 20px; }
+.contact .addr { font-family: var(--font-mono); font-size: 15px; word-break: break-all; user-select: all; }
+.toast { font-family: var(--font-mono); font-size: 12px; color: var(--muted); min-height: 1.2em; margin-top: 10px; }
+footer { padding-top: 24px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+@media (max-width: 720px) {
+  .sec { grid-template-columns: minmax(0, 1fr); gap: 4px; padding-block: 32px; }
+  .label { padding-top: 0; }
+  .rule { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-block: 40px 32px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <span>mahmoud-alsakhawy</span>
+    <nav aria-label="Sections">
+      <a href="#skills">skills</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#certifications">certifications</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Network Security Engineer</div>
+      <h1>Mahmoud Alsakhawy</h1>
+      <p class="lead">Firewall administration and network defense. I configure FortiGate NGFWs, build segmented enterprise networks, and read packets and logs to find what doesn't belong. Fortinet NSE 4 certified, with an MSc in Cybersecurity from Queen's University, Canada.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://www.linkedin.com/in/mahmoud-alsakhawy" target="_blank" rel="noopener">LinkedIn profile</a>
+        <button class="btn" type="button" id="copy-email" aria-describedby="toast"><span>Copy email</span> <span class="mono">mahmoudalsakhawy@gmail.com</span></button>
+      </div>
+      <div class="toast" id="toast" role="status"></div>
+    </div>
+
+    <dl class="facts">
+      <div class="fact"><dt>Certified</dt><dd>Fortinet NSE 4, FortiOS 7.6</dd></div>
+      <div class="fact"><dt>Training</dt><dd>Cisco ENCOR at Cisco HQ, Dubai</dd></div>
+      <div class="fact"><dt>Languages</dt><dd>Arabic (native), English (fluent)</dd></div>
+    </dl>
+  </header>
+
+  <section class="sec" id="skills">
+    <div class="label">skills</div>
+    <div class="body">
+      <h2>What I work with</h2>
+      <div class="rules">
+        <div class="rule">
+          <h3>Firewall &amp; security</h3>
+          <ul class="chips">
+            <li>FortiGate NGFW</li><li>Firewall policies</li><li>NAT</li><li>IPS</li><li>Web filtering</li><li>Application control</li><li>IPsec / SSL VPN</li><li>High availability (HA)</li><li>Network segmentation</li><li>Least-privilege access</li>
+          </ul>
+        </div>
+        <div class="rule">
+          <h3>Networking</h3>
+          <ul class="chips">
+            <li>TCP/IP</li><li>Routing and switching</li><li>OSPF</li><li>BGP</li><li>VLANs</li><li>STP</li><li>ACLs</li><li>DHCP</li><li>Subnetting</li>
+          </ul>
+        </div>
+        <div class="rule">
+          <h3>Monitoring</h3>
+          <ul class="chips">
+            <li>Splunk</li><li>Firewall log analysis</li><li>Wireshark</li><li>Packet capture and analysis</li><li>Traffic inspection</li><li>Network troubleshooting</li><li>Security operations</li>
+          </ul>
+        </div>
+        <div class="rule">
+          <h3>Platforms &amp; tools</h3>
+          <ul class="chips">
+            <li>FortiOS 7.6</li><li>Cisco IOS</li><li>Huawei eNSP</li><li>Linux</li><li>AWS (EC2, S3)</li><li>Python</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="experience">
+    <div class="label">experience</div>
+    <div class="body">
+      <h2>Experience</h2>
+      <div class="role">
+        <h3>Cyber Security Intern, Digilians</h3>
+        <span class="meta">Sep 2025 – Sep 2026</span>
+      </div>
+      <ul class="points">
+        <li>Configured and tested FortiGate NGFW policies, NAT, IPsec/SSL VPN, and security profiles in Fortinet training labs.</li>
+        <li>Built and troubleshot enterprise network topologies in Huawei eNSP using VLANs, STP, OSPF, ACLs, and NAT.</li>
+        <li>Applied network segmentation and least-privilege access controls to separate internal network zones.</li>
+        <li>Used Wireshark packet captures to inspect network traffic, troubleshoot connectivity, and identify suspicious packet behavior.</li>
+        <li>Reviewed firewall logs in Splunk and practiced security operations workflows based on SANS methodologies, plus virtual labs on TryHackMe SOC L1.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="label">projects</div>
+    <div class="body">
+      <h2>Projects</h2>
+      <div class="projects">
+        <article class="project">
+          <h3>ICS Attack Detection (Water Chlorination)</h3>
+          <p>Trained and evaluated machine learning models to detect cyberattacks against industrial control systems, using the SWaT and WaDi datasets.</p>
+          <ul class="tags"><li>Machine learning</li><li>ICS security</li><li>SWaT</li><li>WaDi</li></ul>
+        </article>
+        <article class="project">
+          <h3>InfoSec Chatbot on AWS</h3>
+          <p>Deployed a Llama-based information security chatbot on Amazon EC2 with Amazon S3 storage integration.</p>
+          <ul class="tags"><li>Llama</li><li>Amazon EC2</li><li>Amazon S3</li></ul>
+        </article>
+        <article class="project">
+          <h3>Adversarial ML Defense</h3>
+          <p>Compared standard training, FGSM adversarial training, and PGD adversarial training to assess how robust machine-learning models are against adversarial attacks.</p>
+          <ul class="tags"><li>FGSM</li><li>PGD</li><li>Adversarial training</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="certifications">
+    <div class="label">certifications</div>
+    <div class="body">
+      <h2>Certifications</h2>
+      <div class="certs">
+        <div class="certgroup">
+          <h3>Network &amp; firewall</h3>
+          <ul>
+            <li class="star">Certified Fortinet NSE 4 – FortiOS 7.6 Administrator</li>
+            <li>Huawei HCIA-Datacom V2</li>
+            <li>Official Cisco ENCOR Training Certificate (Cisco HQ, Dubai)</li>
+          </ul>
+        </div>
+        <div class="certgroup">
+          <h3>Security operations &amp; defense</h3>
+          <ul>
+            <li>Cisco Security Operations Center (SOC), Coursera</li>
+            <li>TryHackMe SOC Level 1</li>
+            <li>Google Cybersecurity Professional Certificate, Coursera</li>
+            <li>EC-Council Network Defense Essentials (NDE), Ethical Hacking Essentials (EHE), and Digital Forensics Essentials (DFE), Coursera</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="education">
+    <div class="label">education</div>
+    <div class="body">
+      <h2>Education</h2>
+      <ul class="edu">
+        <li><span><strong>MSc Cybersecurity</strong>, Queen's University, Canada</span><span class="meta">Jan 2026 – Nov 2026</span></li>
+        <li><span><strong>BSc Computer Science</strong>, Tanta University, Egypt</span><span class="meta">Oct 2019 – May 2023</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact">
+    <div class="label">contact</div>
+    <div class="body">
+      <h2>Get in touch</h2>
+      <p>Open to network security and firewall administration roles. The fastest way to reach me is email or LinkedIn.</p>
+      <div class="addr" id="email-text">mahmoudalsakhawy@gmail.com</div>
+      <div class="actions">
+        <a class="btn primary" href="https://www.linkedin.com/in/mahmoud-alsakhawy" target="_blank" rel="noopener">linkedin.com/in/mahmoud-alsakhawy</a>
+        <button class="btn" type="button" id="copy-email-2">Copy email</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>Mahmoud Alsakhawy</footer>
+</div>
+
+<script>
+(function () {
+  var EMAIL = "mahmoudalsakhawy@gmail.com";
+  var toast = document.getElementById("toast");
+  var timer;
+  function say(msg) {
+    toast.textContent = msg;
+    clearTimeout(timer);
+    timer = setTimeout(function () { toast.textContent = ""; }, 3000);
+  }
+  function selectText() {
+    var el = document.getElementById("email-text");
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+    el.scrollIntoView({ block: "center" });
+  }
+  function copy() {
+    var p;
+    try { p = navigator.clipboard.writeText(EMAIL); } catch (e) { p = Promise.reject(e); }
+    p.then(function () { say("Email copied."); })
+     .catch(function () { selectText(); say("Email selected. Press Ctrl+C or long-press to copy."); });
+  }
+  document.getElementById("copy-email").addEventListener("click", copy);
+  document.getElementById("copy-email-2").addEventListener("click", copy);
+})();
+</script>
+</body>
+</html>
